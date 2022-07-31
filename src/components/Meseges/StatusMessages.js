@@ -2,7 +2,7 @@ import { useState } from "react";
 import  "./StatusMessages.css";
 import { useSelector } from "react-redux";
 
-
+//Message Component
 const StatusMessages = () => {
     const message = useSelector((state) => state.ui.message);
     

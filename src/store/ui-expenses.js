@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+//UI Switcher
 const uiExpenses = createSlice({
   name: "ui",
   initialState: {
