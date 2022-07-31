@@ -1,0 +1,30 @@
+.body {
+    display: flex;
+    
+    width: 80%;
+    
+    height: 2.5rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      
+  }
+  .msg{
+    padding-left: 1rem;
+  }
+  .green{
+    background-color: #7DCE13;
+    color: #ffffff;
+
+  }
+  .red{
+    background-color: #EB1D36;
+    color: #A2B5BB;
+  }
+  .blue{
+    background-color: #34B3F1;
+    color: #EEEEEE;
+  }

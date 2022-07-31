@@ -16,14 +16,11 @@ const ChartBarLable = (props) => {
     { name: "Лис", value: 0 },
     { name: "Гру", value: 0 },
   ];
-  
-  //console.log(props.expenseDates[0]);
      for (const expense of props.expenseDates) {
     const expenseMonth = expense.date.getMonth(); 
     chartDataPoints[expenseMonth].value += expense.amount;
 
   }    
-  //console.log(chartDataPoints);
   return (
   <Chart dataPoints={chartDataPoints} />
   )

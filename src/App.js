@@ -1,27 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Expenses from "./components/Expenses.js";
 import AddExpense from "./components/AddExpense/AddExpense.js";
+import Header from "./components/Header/Header";
+import AuthForm from "./components/Auth/AuthForm";
+import { useDispatch, useSelector } from "react-redux";
+import { uiActions } from "./store/ui-expenses";
+import { saveLoadItems } from "./store/items";
+import StatusMessages from "./components/Meseges/StatusMessages";
 
-const expensesList = [
-  { id: "d1", date: new Date(2021, 1, 1), amount: 123, title: "Телефон" },
-  { id: "b2", date: new Date(2020, 2, 1), amount: 222, title: "Стіл" },
-  { id: "b3", date: new Date(2021, 3, 1), amount: 523, title: "Послуги дизайнера" },
-];
 function App() {
-  const [expensVal, setExpensVal] = useState(expensesList);
+  const dispatch = useDispatch();
 
-  const addNewExpenseData = (values) => {
-    console.log(values);
-    setExpensVal((addNew) => {
-      return [values, ...addNew];
-    });
-  };
+  let isLogin = useSelector((state) => state.ui.isLogin);
+  let isMessage = useSelector((state) => state.ui.isMessage);
+  let isLoad = useSelector((state) => state.ui.isLoad);
+  const userName = localStorage.getItem("email") + ".json/";
+
+  useEffect(() => {
+    dispatch(uiActions.checkIsLoading());
+    dispatch(
+      saveLoadItems(
+        "https://sushi-5aab6-default-rtdb.firebaseio.com/" + userName,
+        {
+          method: "GET",
+        }
+      )
+    );
+  }, [isLogin, isLoad, userName, dispatch]);
+
+  const loginFormLoading = !isLogin ? (
+    <AuthForm />
+  ) : (
+    <>
+      <AddExpense />
+      <Expenses />
+    </>
+  );
   return (
-    <div>
-      <AddExpense onSaveExpense={addNewExpenseData} />
-      <Expenses val={expensVal} />
-    </div>
+    <>
+      {isMessage && <StatusMessages />}
+      <Header />
+      {loginFormLoading}
+    </>
   );
 }
 
