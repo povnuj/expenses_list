@@ -11,7 +11,7 @@ import StatusMessages from "./components/Meseges/StatusMessages";
 
 function App() {
   const dispatch = useDispatch();
-
+//Add dwn data from server
   let isLogin = useSelector((state) => state.ui.isLogin);
   let isMessage = useSelector((state) => state.ui.isMessage);
   let isLoad = useSelector((state) => state.ui.isLoad);

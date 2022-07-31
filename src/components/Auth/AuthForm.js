@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { loginExpenses } from "../../store/login";
-
+//Auth Component
 import styles from "./AuthForm.module.css";
 
 const AuthForm = () => {

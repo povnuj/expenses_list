@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { uiActions } from "./ui-expenses";
-
+//Auth control
 let timerId;
 const authContx = createSlice({
   name: "auth",
