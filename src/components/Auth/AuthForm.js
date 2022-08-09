@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { loginExpenses } from "../../store/login";
 
 import styles from "./AuthForm.module.css";
-
+let isEdit = false;
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passRef = useRef();
+  
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -38,14 +39,21 @@ const AuthForm = () => {
       );
     }
   };
+  const checkIsedit = () =>{
+    if (!isEdit){
+      emailRef.current.value = '';
+      passRef.current.value = '';
+      isEdit = true;
+    }
+  };
 
   return (
     <section className={styles.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} >
         <div className={styles.control}>
           <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailRef} />
+          <input type="email" id="email" onChange={checkIsedit} required ref={emailRef} />
         </div>
         <div className={styles.control}>
           <label htmlFor="password">Your Password</label>
